@@ -20,6 +20,7 @@ terminal Linea, Comillas, T_dato, P_dato, Cadena, If, Else, Do, While, For,
     Op_atribucion, Op_incremento, Op_booleano, Parentesis_a, Parentesis_c,
     Llave_a, Llave_c, Corchete_a, Corchete_c, Main, P_coma, Identificador,
     Numero, ERROR, Numeral, Puntos ComiSimple;
+
 non terminal INICIO, SENTENCIA, DECLARACION, DECLARACION_FOR, IF, IF_ELSE,
     WHILE, DO_WHILE, FOR, SENTENCIA_BOOLEANA, SENTENCIA_FOR, Switch, Case,
     Struct, Default, Static, Sizeof, Void, Break, Null;
@@ -43,6 +44,8 @@ SENTENCIA ::=
     DO_WHILE |
     SENTENCIA FOR |
     FOR
+    SENTENCIA SWITCH |
+    SWITCH
 ;
 DECLARACION ::= 
     T_dato Identificador P_coma | 
@@ -81,4 +84,10 @@ DECLARACION_FOR ::=
     Identificador Op_atribucion Numero |
     Identificador Op_incremento | 
     Op_incremento Identificador
+;
+SWITCH ::= Switch Parentesis_a T_dato Identificador | String Parentesis_c Llave_a DECLARACION_SWITCH Llave_c
+
+DECLARACION_SWITCH ::= 
+    Case T_dato Identificador =**Variable** Puntos SENTENCIA P_coma Break P_coma|
+    Default Puntos SENTENCIA
 ;
